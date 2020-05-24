@@ -1,1 +1,2 @@
 export const FETCH_EMPLOYEES = 'FETCH_EMPLOYEES'
+export const ACTIVE_TAB = 'ACTIVE_TAB'

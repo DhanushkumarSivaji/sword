@@ -5,7 +5,6 @@ import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 import {getSkills, getOptions, getCountries} from '../utils/utils'
 
-
 const useStyles = makeStyles((theme) => ({
 	inputStyle: {
 		'& > *': {
@@ -31,16 +30,16 @@ const EmployeeListFilter = () => {
 
 	const skills = getSkills(employees)
 	const skillsOptions = getOptions(skills)
-	
+
 	const countries = getCountries(employees)
 	const countriesOptions = getOptions(countries)
 
 	const handleSkillChange = (event) => {
-    setSkill(event.target.value);
+    setSkill(event.target.value)
 	}
 	
 	const handleCountryChange = (event) => {
-    setCountry(event.target.value);
+    setCountry(event.target.value)
   }
 
 	return (

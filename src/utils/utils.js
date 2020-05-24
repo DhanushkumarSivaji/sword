@@ -18,4 +18,12 @@ export const getSkills = employees => {
     return uniqueSkills.sort()
 }
 
-export const getOptions = arr => arr.slice(0, -1).map(item => ({value : item}))
+export const getOptions = arr => arr.map(item => ({value : item}))
+
+export const createData = (...args) => { 
+	let mapData = {}	
+	for (let arg of args) {
+		mapData[arg] = arg
+	}
+	return mapData
+}
