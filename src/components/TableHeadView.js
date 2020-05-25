@@ -6,7 +6,7 @@ import {StyledTableCell} from './StyledTable'
 
 class TableHeadView extends Component {
 
-	renderStyledTable = () => {
+	renderStyledTableCell = () => {
 		const {activeTab} = this.props
 		if (activeTab === 1) {
 			return (
@@ -40,7 +40,7 @@ class TableHeadView extends Component {
 		return (
 			<TableHead>
 				<TableRow>
-					{this.renderStyledTable()}
+					{this.renderStyledTableCell()}
 				</TableRow>
 			</TableHead>
 		)
