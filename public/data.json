@@ -6,7 +6,7 @@
     "joindate": 953231400000,
     "country": "Winterfell",
     "gender": "Male",
-    "skills": ["Leadership", "Sword Fighting"]
+    "skills": "Sword Fighting"
   },
   {
     "id": 2,
@@ -15,7 +15,7 @@
     "joindate": 984767400000,
     "country": "Westeros",
     "gender": "Female",
-    "skills": ["Flying", "Leadership"]
+    "skills": "Flying"
   },
   {
     "id": 3,
@@ -24,7 +24,7 @@
     "joindate": 1016303400000,
     "country": "Kings Landing",
     "gender": "Male",
-    "skills": ["Sword Fighting", "Horse Riding", "Leadership"]
+    "skills": "Sword Fighting"
   },
   {
     "id": 4,
@@ -33,7 +33,7 @@
     "joindate": 1047839400000,
     "country": "Winterfell",
     "gender": "Female",
-    "skills": ["Face Swap", "Sword Fighting", "Assassin"]
+    "skills": "Assassin"
   },
   {
     "id": 5,
@@ -42,7 +42,7 @@
     "joindate": 1079461800000,
     "country": "Kings Landing",
     "gender": "Male",
-    "skills": ["Advisor", "Leadership"]
+    "skills": "Advisor"
   },
   {
     "id": 6,
@@ -51,7 +51,7 @@
     "joindate": 1110997800000,
     "country": "Westeros",
     "gender": "Male",
-    "skills": ["Sword Fighting", "Advisor"]
+    "skills": "Advisor"
   },
   {
     "id": 7,
@@ -60,7 +60,7 @@
     "joindate": 1142533800000,
     "country": "Winterfell",
     "gender": "Female",
-    "skills": ["Leadership", "Advisor"]
+    "skills": "Leadership"
   },
   {
     "id": 8,
@@ -69,7 +69,7 @@
     "joindate": 1174069800000,
     "country": "Bravos",
     "gender": "Male",
-    "skills": ["Face Swap", "Assassin"]
+    "skills": "Assassin"
   },
   {
     "id": 9,
@@ -78,7 +78,7 @@
     "joindate": 1174069800000,
     "country": "Meeren",
     "gender": "Male",
-    "skills": ["Sword Fighting", "Leadership"]
+    "skills": "Sword Fighting"
   },
   {
     "id": 10,
@@ -87,6 +87,6 @@
     "joindate": 1205692200000,
     "country": "Meeren",
     "gender": "Female",
-    "skills": ["Advisor"]
+    "skills": "Advisor"
   }
 ]

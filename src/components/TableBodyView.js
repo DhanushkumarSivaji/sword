@@ -13,11 +13,16 @@ class TableBodyView extends Component {
 	// 	createData1('Cupcake', 305, 3.7, 67, 4.3,66),
 	// 	createData1('Gingerbread', 356, 16.0, 49, 3.9,66),
 	// ];
-
-	componentDidMount () {
-		this.createRow()
-	}
 	rows = []
+
+	createRowArr = () => {
+		// this.createRow()
+		const {employees, activeTab} = this.props
+		for (let i=0; i<employees.length; i++) {
+			const val = Object.values(employees[i]).toString()
+			this.rows.push(createData1(val))
+		}
+	}
 
 	createRow = () => {
 		const {employees, activeTab} = this.props
@@ -27,35 +32,42 @@ class TableBodyView extends Component {
 				const val = Object.values(employee).toString()
 				this.rows.push(createData1(val))
 			})
-		} else if (activeTab === 2) {
-			let newEmp = []
-			employees.map((employee) => {
-				Object.keys(employee).map((key) => {
-					if (key === 'name' || key === 'skills') {
-						newEmp.push(employee[key])
-					}
-				})
-				const val = newEmp.toString()
-				this.rows.push(createData2(val))
-			})
-		} else {
-			let newEmp = []
-			employees.map((employee) => {
-				Object.keys(employee).map((key) => {
-					if (key === 'name' || key === 'gender') {
-						newEmp.push(employee[key])
-					}
-				})
-				const val = newEmp.toString()
-				this.rows.push(createData3(val))
-			})
-		}
+		} 
+		//else if (activeTab === 2) {
+		// 	let newEmp = []
+		// 	employees.map((employee) => {
+		// 		Object.keys(employee).map((key) => {
+		// 			if (key === 'name' || key === 'skills') {
+		// 				newEmp.push(employee[key])
+		// 			}
+		// 		})
+		// 		const val = newEmp.toString()
+		// 		this.rows.push(createData2(val))
+		// 	})
+		// } else {
+		// 	let newEmp = []
+		// 	employees.map((employee) => {
+		// 		Object.keys(employee).map((key) => {
+		// 			if (key === 'name' || key === 'gender') {
+		// 				newEmp.push(employee[key])
+		// 			}
+		// 		})
+		// 		const val = newEmp.toString()
+		// 		this.rows.push(createData3(val))
+		// 	})
+		// }
 	}
 
-	renderTableRow = () => {
-		console.log('rows: ', this.rows)
+	renderStyleTabelCell = () => {
+		let rows = []
+		const {employees, activeTab} = this.props
+		for (let i=0; i<employees.length; i++) {
+			const val = Object.values(employees[i]).toString()
+			rows.push(createData1(val))
+		}
+
 		return (
-			this.rows.map((row) => (
+			rows.map((row) => (
 				<StyledTableRow key={row.name}>
 					<StyledTableCell component="th" scope="row">
 						{row.name}
@@ -66,9 +78,28 @@ class TableBodyView extends Component {
 					<StyledTableCell align="right">{row.gender}</StyledTableCell>
 					<StyledTableCell align="right">{row.skills}</StyledTableCell>
 				</StyledTableRow>
-			))
+			)))
+	}
+
+	renderTableRow = () => {
+		console.log('rows: ', this.rows)
+		// {this.createRowArr()}
+		// return (
+		// 	this.rows.map((row) => (
+		// 		<StyledTableRow key={row.name}>
+		// 			<StyledTableCell component="th" scope="row">
+		// 				{row.name}
+		// 			</StyledTableCell>
+		// 			<StyledTableCell align="right">{row.age}</StyledTableCell>
+		// 			<StyledTableCell align="right">{row.joindate}</StyledTableCell>
+		// 			<StyledTableCell align="right">{row.country}</StyledTableCell>
+		// 			<StyledTableCell align="right">{row.gender}</StyledTableCell>
+		// 			<StyledTableCell align="right">{row.skills}</StyledTableCell>
+		// 		</StyledTableRow>
+		// 	))
 			
-		)
+		// )
+		this.renderStyleTabelCell()
 	}
 
 	render() {
