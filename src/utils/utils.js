@@ -20,14 +20,37 @@ export const getSkills = employees => {
 
 export const getOptions = arr => arr.map(item => ({value : item}))
 
-export const createData1 = (name, age, joindate, country, gender, skills) => {
-  return { name, age, joindate, country, gender, skills };
+export const createData1 = (val) => {
+	console.log('val: ', val)
+  return { 
+		name: val[0], 
+		age: val[1], 
+		joindate: val[2], 
+		country: val[3],
+		gender: val[4], 
+		skills: val[5]
+	}
 }
 
-export const createData2 = (name, skills) => {
-  return { name, skills };
+export const createData2 = (val) => {
+  return { 
+		name: val[0], 
+		skills: val[5] 
+	}
 }
 
-export const createData3 = (name, gender) => {
-  return { name, gender };
+export const createData3 = (val) => {
+	return { 
+		name: val[0], 
+		gender: val[4] 
+	}
+}
+
+export const getDate = (timestamp) => {
+	const d = new Date(timestamp)
+	const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
+	const year = d.getFullYear()
+	const month = months[d.getMonth()]
+	const date = d.getDate()
+	return `${month} ${date}, ${year}`	
 }

@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import TableBody from '@material-ui/core/TableBody';
 import {StyledTableRow, StyledTableCell} from './StyledTable'
-import {createData1, createData2, createData3} from '../utils/utils'
+import {createData1, createData2, createData3, getDate} from '../utils/utils'
 
 class TableBodyView extends Component {
 
@@ -19,7 +19,7 @@ class TableBodyView extends Component {
 		// this.createRow()
 		const {employees, activeTab} = this.props
 		for (let i=0; i<employees.length; i++) {
-			const val = Object.values(employees[i]).toString()
+			const val = Object.values(employees[i])
 			this.rows.push(createData1(val))
 		}
 	}
@@ -59,53 +59,56 @@ class TableBodyView extends Component {
 	}
 
 	renderStyleTabelCell = () => {
+		let values = []
 		let rows = []
 		const {employees, activeTab} = this.props
 		for (let i=0; i<employees.length; i++) {
-			const val = Object.values(employees[i]).toString()
-			rows.push(createData1(val))
+			delete employees[i].id
+			const value = Object.values(employees[i])
+			values.push(value)
 		}
 
-		return (
-			rows.map((row) => (
-				<StyledTableRow key={row.name}>
-					<StyledTableCell component="th" scope="row">
-						{row.name}
-					</StyledTableCell>
-					<StyledTableCell align="right">{row.age}</StyledTableCell>
-					<StyledTableCell align="right">{row.joindate}</StyledTableCell>
-					<StyledTableCell align="right">{row.country}</StyledTableCell>
-					<StyledTableCell align="right">{row.gender}</StyledTableCell>
-					<StyledTableCell align="right">{row.skills}</StyledTableCell>
-				</StyledTableRow>
-			)))
-	}
-
-	renderTableRow = () => {
-		console.log('rows: ', this.rows)
-		// {this.createRowArr()}
-		// return (
-		// 	this.rows.map((row) => (
-		// 		<StyledTableRow key={row.name}>
-		// 			<StyledTableCell component="th" scope="row">
-		// 				{row.name}
-		// 			</StyledTableCell>
-		// 			<StyledTableCell align="right">{row.age}</StyledTableCell>
-		// 			<StyledTableCell align="right">{row.joindate}</StyledTableCell>
-		// 			<StyledTableCell align="right">{row.country}</StyledTableCell>
-		// 			<StyledTableCell align="right">{row.gender}</StyledTableCell>
-		// 			<StyledTableCell align="right">{row.skills}</StyledTableCell>
-		// 		</StyledTableRow>
-		// 	))
-			
-		// )
-		this.renderStyleTabelCell()
+		if (activeTab === 1) {
+			return values.map((val) => {
+				let row = createData1(val)
+				return(
+					<StyledTableRow key={row.name}>
+						<StyledTableCell component="th" scope="row">{row.name}</StyledTableCell>
+						<StyledTableCell align="right">{row.age}</StyledTableCell>
+						<StyledTableCell align="right">{getDate(row.joindate)}</StyledTableCell>
+						<StyledTableCell align="right">{row.country}</StyledTableCell>
+						<StyledTableCell align="right">{row.gender}</StyledTableCell>
+						<StyledTableCell align="right">{row.skills}</StyledTableCell>
+					</StyledTableRow>
+				)
+			})
+		} else if (activeTab === 2) {
+			return values.map((val) => {
+				let row = createData2(val)
+				return(
+					<StyledTableRow key={row.name}>
+						<StyledTableCell component="th" scope="row">{row.name}</StyledTableCell>
+						<StyledTableCell>{row.skills}</StyledTableCell>
+					</StyledTableRow>
+				)
+			})
+		} else {
+			return values.map((val) => {
+				let row = createData3(val)
+				return(
+					<StyledTableRow key={row.name}>
+						<StyledTableCell component="th" scope="row">{row.name}</StyledTableCell>
+						<StyledTableCell>{row.gender}</StyledTableCell>
+					</StyledTableRow>
+				)
+			})
+		}
 	}
 
 	render() {
 		return (
 			<TableBody>
-				{this.renderTableRow()}
+				{this.renderStyleTabelCell()}
 			</TableBody>
 		)
 	}
