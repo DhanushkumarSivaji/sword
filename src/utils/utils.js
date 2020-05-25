@@ -21,8 +21,7 @@ export const getSkills = employees => {
 export const getOptions = arr => arr.map(item => ({value : item}))
 
 export const createData1 = (val) => {
-	console.log('val: ', val)
-  return { 
+	return { 
 		name: val[0], 
 		age: val[1], 
 		joindate: val[2], 
@@ -53,4 +52,15 @@ export const getDate = (timestamp) => {
 	const month = months[d.getMonth()]
 	const date = d.getDate()
 	return `${month} ${date}, ${year}`	
+}
+
+export const selectList = (employees, filters) => {
+	const {text, skill, filter} = filters
+
+	return employees.filter((employee) => {
+		const textMatch = employee.name.toLowerCase().includes(text.toLowerCase())
+		const skillMatch = employee.skills.includes(skill)
+		const genderMatch = employee.gender.includes(gender)
+		return textMatch && skillMatch
+	})
 }
