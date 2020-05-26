@@ -1,4 +1,4 @@
-import { TEXT_FILTER, SKILL_FILTER, GENDER_FILTER } from "./ActionTypes"
+import { TEXT_FILTER, SKILL_FILTER, GENDER_FILTER, COUNTRY_FILTER } from "./ActionTypes"
 
 export const textFilter = (text = '') => {
 	return {
@@ -7,16 +7,24 @@ export const textFilter = (text = '') => {
 	}
 }
 
-export const skillFilter = (option = '') => {
+export const skillFilter = (skill = '') => {
 	return {
 		type: SKILL_FILTER,
-		payload: option
+		payload: skill
 	}
 }
 
-export const genderFilter = (option = '') => {
+export const countryFilter = (country = '') => {
+	return {
+		type: COUNTRY_FILTER,
+		payload: country
+	}
+}
+
+
+export const genderFilter = (gender = '') => {
 	return {
 		type: GENDER_FILTER,
-		payload: option
+		payload: gender
 	}
 }

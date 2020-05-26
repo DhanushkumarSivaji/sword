@@ -55,12 +55,14 @@ export const getDate = (timestamp) => {
 }
 
 export const selectList = (employees, filters) => {
-	const {text, skill, gender} = filters
+	const {text, skill, country, gender} = filters
 
 	return employees.filter((employee) => {
 		const textMatch = employee.name.toLowerCase().includes(text.toLowerCase())
 		const skillMatch = employee.skills.includes(skill)
+		const countryMatch = employee.country.includes(country)
 		const genderMatch = employee.gender.includes(gender)
-		return textMatch && skillMatch
+		
+		return textMatch && skillMatch && countryMatch && genderMatch
 	})
 }
