@@ -2,7 +2,8 @@ import { TEXT_FILTER, SKILL_FILTER } from '../actions/ActionTypes'
 
 const initialState = {
 	text: '',
-	skill: ''
+	skill: '',
+	gender: ''
 }
 
 export default (state = initialState, action) => {
@@ -15,7 +16,7 @@ export default (state = initialState, action) => {
 		case SKILL_FILTER:
 			return {
 				...state,
-				option: action.payload
+				skill: action.payload
 			}
 		default:
 			return state

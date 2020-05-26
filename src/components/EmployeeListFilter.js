@@ -3,10 +3,13 @@ import {connect} from 'react-redux'
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
 import {getSkills, getOptions, getCountries} from '../utils/utils'
 // import useStyles from './FilterStyles'
 import {textFilter, skillFilter} from '../actions/filter-actions'
-
+import Select from '@material-ui/core/Select';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormHelperText from '@material-ui/core/FormHelperText';
 // const EmployeeListFilter = () => {
 // 	const classes = useStyles()
 // 	const [skill, setSkill] = React.useState('Advisor');
@@ -87,7 +90,11 @@ const useStyles = theme => ({
 			margin: theme.spacing(1),
 			width: '25ch',
 		},
-	}
+	},
+	formControl: {
+		margin: theme.spacing(1),
+		minWidth: 120,
+	  }
 });
 
 class EmployeeListFilter extends Component {
@@ -99,12 +106,14 @@ class EmployeeListFilter extends Component {
 	}
 
 	// classes = useStyles
+	// employees = eval(this.props.employees)
+	// skills = getSkills(this.props.employees)
+	// skillsOptions = getOptions(this.skills)
 
-	skills = getSkills(this.props.employees)
-	skillsOptions = getOptions(this.skills)
+	// countries = getCountries(this.props.employees)
+	// countriesOptions = getOptions(this.countries)
 
-	countries = getCountries(this.props.employees)
-	countriesOptions = getOptions(this.countries)
+	genderOptions = ['Male', 'Female']
 
 	handleTextChange = event => {
 		this.props.dispatch(textFilter(event.target.value))
@@ -112,24 +121,47 @@ class EmployeeListFilter extends Component {
 
 	handleSkillChange = (event) => {
 		console.log('ev: ', event.target.value)
-    this.props.dispatch(skillFilter(event.target.value))
+    	this.props.dispatch(skillFilter(event.target.value))
 	}
 	
-	handleCountryChange = (event) => {
-    // setCountry(event.target.value)
-	}
+	// handleCountryChange = (event) => {
+    
+	// }
+
+	// handleGenderChange = event = {
+	// 	this.props.dispatch(genderFilter(event.target.value))
+	// }
 	
 	render() {
-		// console.log(this.classes.inputStyle)
-		console.log('ppp:', this.props)
+		const skills = getSkills(this.props.employees)
+		const skillsOptions = getOptions(skills)
+
+	// countries = getCountries(this.props.employees)
+	// countriesOptions = getOptions(this.countries)
 		return (
-			<form className={this.props.classes.root} noValidate autoComplete="off">
+			<form noValidate autoComplete="off">
 				<TextField 
 					id="standard-basic" 
 					label="Search employee"
 					value={this.props.filters.text} 
 					onChange={this.handleTextChange}
 				/>
+				{/* <FormControl className={this.props.classes.formControl}>
+				<InputLabel id="demo-simple-select-helper-label">Skill</InputLabel>
+				<Select
+					labelId="demo-simple-select-label"
+					id="demo-simple-select"
+					// value={age}
+					// onChange={handleChange}
+					>
+					{this.skillsOptions.map((skill) => (
+						<MenuItem key={skill.value} value={skill.value}>
+							{skill.value}
+						</MenuItem>
+					))}
+				</Select> 
+				<FormHelperText>Some important helper text</FormHelperText>
+				</FormControl> */}
 				 <TextField
 					id="select-skill"
 					select
@@ -138,23 +170,37 @@ class EmployeeListFilter extends Component {
 					onChange={this.handleSkillChange}
 					helperText="Please select a skill set"
 				>
-					{this.skillsOptions.map((skill) => (
+					{skillsOptions.map((skill) => (
 						<MenuItem key={skill.value} value={skill.value}>
 							{skill.value}
 						</MenuItem>
 					))}
 				</TextField>
-				{/*<TextField
+				{/* <TextField
 					id="select-country"
 					select
 					label="Country"
-					value={country}
-					onChange={handleCountryChange}
+					value={this.props.filters.country}
+					onChange={this.handleCountryChange}
 					helperText="Please select a country"
 				>
-					{countriesOptions.map((country) => (
+					{this.countriesOptions.map((country) => (
 						<MenuItem key={country.value} value={country.value}>
 							{country.value}
+						</MenuItem>
+					))}
+				</TextField>
+				<TextField
+					id="select-gender"
+					select
+					label="Gender"
+					value={this.props.filters.gender}
+					onChange={this.handleGenderChange}
+					helperText="Please select a country"
+				>
+					{this.genderOptions.map((gender) => (
+						<MenuItem key={index} value={gender}>
+							{gender}
 						</MenuItem>
 					))}
 				</TextField> */}
@@ -164,13 +210,15 @@ class EmployeeListFilter extends Component {
 }
 
 const mapStateToProps = state => {
+	const employees = eval(state.employees)
+	console.log('filters: ', state.filters)
 	return {
-		employees: eval(state.employees),
+		employees,
 		filters: state.filters
 	}
 }
 
-const classComp = withStyles(useStyles)(EmployeeListFilter)
+// const classComp = withStyles(useStyles)(EmployeeListFilter)
 
-export default connect(mapStateToProps)(classComp)
+export default connect(mapStateToProps)(EmployeeListFilter)
 
