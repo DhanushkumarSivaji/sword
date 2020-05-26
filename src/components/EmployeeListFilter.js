@@ -2,9 +2,35 @@ import React, { Component } from 'react'
 import {connect} from 'react-redux'
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
+import { withStyles } from '@material-ui/core/styles';
 import {getSkills, getOptions, getCountries} from '../selectors/selectors'
 import {textFilter, skillFilter, countryFilter, genderFilter} from '../actions/filter-actions'
 import Button from '@material-ui/core/Button';
+
+const styles = theme => ({
+  container: {
+    display: 'flex',
+		flexWrap: 'wrap',
+		margin: "30px"
+  },
+  textField: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
+		width: "200px"
+  },
+  dense: {
+    marginTop: 19,
+  },
+  menu: {
+    width: 200,
+	},
+	button: {
+		margin: theme.spacing.unit,
+		background: "#2196f3",
+		color: "black",
+		float: "right"
+  }
+});
 
 class EmployeeListFilter extends Component {
 
@@ -32,6 +58,7 @@ class EmployeeListFilter extends Component {
 	}
 
 	render() {
+		const { classes } = this.props
 		const skills = getSkills(this.props.employees)
 		const skillsOptions = getOptions(skills)
 		const countries = getCountries(this.props.employees)
@@ -39,12 +66,13 @@ class EmployeeListFilter extends Component {
 		const genderOptions = ['Male', 'Female']
 
 		return (
-			<form noValidate autoComplete="off">
+			<form className={classes.container} noValidate autoComplete="off">
 				<TextField 
 					id="standard-basic" 
 					label="Search employee"
 					value={this.props.filters.text} 
 					onChange={this.handleTextChange}
+					className={classes.textField}
 				/>
 				<TextField
 					id="select-skill"
@@ -54,6 +82,7 @@ class EmployeeListFilter extends Component {
 					onChange={this.handleSkillChange}
 					helperText="Please select a skill"
 					hidden={this.props.activeTab === 3 ? true : false}
+					className={classes.textField}
 				>
 					{skillsOptions.map((skill) => (
 						<MenuItem key={skill.value} value={skill.value}>
@@ -69,6 +98,7 @@ class EmployeeListFilter extends Component {
 					onChange={this.handleCountryChange}
 					helperText="Please select a country"
 					hidden = {this.props.activeTab !== 1 ? true : false} 
+					className={classes.textField}
 				>
 					{countriesOptions.map((country) => (
 						<MenuItem key={country.value} value={country.value}>
@@ -84,6 +114,7 @@ class EmployeeListFilter extends Component {
 					onChange={this.handleGenderChange}
 					helperText="Please select a gender"
 					hidden={this.props.activeTab !== 3 ? true : false }
+					className={classes.textField}
 				>
 					{genderOptions.map((gender) => (
 						<MenuItem key={gender} value={gender}>
@@ -91,7 +122,14 @@ class EmployeeListFilter extends Component {
 						</MenuItem>
 					))}
 				</TextField>
-				<Button variant="contained" onClick={this.handleClearFilter}>Clear Filter</Button>
+				<Button 
+					className={classes.button} 
+					ariant="contained" 
+					onClick={this.handleClearFilter}
+					size="medium"
+				>
+					Clear Filter
+				</Button>
 			</form>
 		)
 	}
@@ -106,5 +144,7 @@ const mapStateToProps = state => {
 	}
 }
 
-export default connect(mapStateToProps)(EmployeeListFilter)
+const classComp = withStyles(styles)(EmployeeListFilter)
+
+export default connect(mapStateToProps)(classComp)
 
