@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import Tabs from './Tabs'
-// import EmployeeListFilter from './EmployeeListFilter'
 import { fetchEmployees } from '../actions/employees-actions';
 import '../styles/styles.css'
 
