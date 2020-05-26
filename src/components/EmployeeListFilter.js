@@ -169,6 +169,7 @@ class EmployeeListFilter extends Component {
 					value={this.props.filters.skill}
 					onChange={this.handleSkillChange}
 					helperText="Please select a skill"
+					hidden={this.props.activeTab === 3 ? true : false}
 				>
 					{skillsOptions.map((skill) => (
 						<MenuItem key={skill.value} value={skill.value}>
@@ -183,6 +184,7 @@ class EmployeeListFilter extends Component {
 					value={this.props.filters.country}
 					onChange={this.handleCountryChange}
 					helperText="Please select a country"
+					hidden = {this.props.activeTab !== 1 ? true : false} 
 				>
 					{countriesOptions.map((country) => (
 						<MenuItem key={country.value} value={country.value}>
@@ -197,6 +199,7 @@ class EmployeeListFilter extends Component {
 					value={this.props.filters.gender}
 					onChange={this.handleGenderChange}
 					helperText="Please select a gender"
+					hidden={this.props.activeTab !== 3 ? true : false }
 				>
 					{genderOptions.map((gender) => (
 						<MenuItem key={gender} value={gender}>
@@ -212,10 +215,10 @@ class EmployeeListFilter extends Component {
 
 const mapStateToProps = state => {
 	const employees = eval(state.employees)
-	console.log('filters: ', state.filters)
 	return {
 		employees,
-		filters: state.filters
+		filters: state.filters,
+		activeTab: state.activeTab
 	}
 }
 
