@@ -28,7 +28,8 @@ const styles = theme => ({
 		margin: theme.spacing.unit,
 		background: "#2196f3",
 		color: "black",
-		float: "right"
+		float: "right",
+		margin: "15px"
   }
 });
 
@@ -126,7 +127,7 @@ class EmployeeListFilter extends Component {
 					className={classes.button} 
 					ariant="contained" 
 					onClick={this.handleClearFilter}
-					size="medium"
+					size="small"
 				>
 					Clear Filter
 				</Button>
