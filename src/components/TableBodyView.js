@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import TableBody from '@material-ui/core/TableBody';
+import TableBody from '@material-ui/core/TableBody'
 import {StyledTableRow, StyledTableCell} from './StyledTable'
 import {createData1, createData2, createData3, getDate, selectList} from '../selectors/selectors'
 

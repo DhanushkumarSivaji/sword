@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
-import TextField from '@material-ui/core/TextField';
-import MenuItem from '@material-ui/core/MenuItem';
-import { withStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField'
+import MenuItem from '@material-ui/core/MenuItem'
+import { withStyles } from '@material-ui/core/styles'
 import {getSkills, getOptions, getCountries} from '../selectors/selectors'
 import {textFilter, skillFilter, countryFilter, genderFilter} from '../actions/filter-actions'
-import Button from '@material-ui/core/Button';
+import Button from '@material-ui/core/Button'
 
 const styles = theme => ({
   container: {

@@ -15,7 +15,7 @@ class App extends Component {
       <div className="App">
 				<Tabs />
       </div>
-    );
+    )
   }
 }
 
